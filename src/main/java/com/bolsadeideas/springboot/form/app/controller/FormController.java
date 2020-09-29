@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bolsadeideas.springboot.form.app.models.entity.User;
 
@@ -18,7 +17,7 @@ import com.bolsadeideas.springboot.form.app.models.entity.User;
 public class FormController {
 	@GetMapping("/form")
 	public String form(Model model) {
-		model.addAttribute("title","Form Usuario");
+		model.addAttribute("title", "Form Usuario");
 		return "form";
 	}
 
@@ -27,14 +26,10 @@ public class FormController {
 	 * ImputName
 	 */
 	@PostMapping("/form")
-	public String procesar(Model model, @RequestParam String username, @RequestParam String password,
-			@RequestParam String email) {
-		//clase pojo(una clase una entity que representa datos)
-		User user = new User(username,password,email);
-		model.addAttribute("title","Resultado Form");
+	public String procesar(User user, Model model) {
+		model.addAttribute("title", "Resultado Form");
 		model.addAttribute("user", user);
-		model.addAttribute("username",username);
-		
+
 		return "resultform";
 	}
 }
