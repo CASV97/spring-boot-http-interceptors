@@ -7,10 +7,10 @@
 <body>
 	<h3 th:text="${title}"></h3>
 	<ul>
-  <li th:text="${username}"> </li>
-  <li> <span th:text="${password}"></span>  </li>
-  <li th:text="${email}"> </li>
-</ul>
+		<li th:text="${user.username}"></li>
+		<li><span th:text="${user.password}"></span></li>
+		<li th:text="${user.email}"></li>
+	</ul>
 
 
 </body>
