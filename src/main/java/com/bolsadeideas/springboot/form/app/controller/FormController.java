@@ -24,6 +24,9 @@ public class FormController {
 	@GetMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("title", "Form Usuario");
+		// para evitar el error de que el objeto user sea null, cuando mostramos
+		// agregamos una instancia de dicho objeto
+		model.addAttribute("user", new User());
 		return "form";
 	}
 
@@ -43,6 +46,7 @@ public class FormController {
 						"El campo ".concat(err.getField().concat(" ").concat(err.getDefaultMessage())));
 			});
 			model.addAttribute("error", errores);
+
 			return "form";
 		}
 		model.addAttribute("user", user);
