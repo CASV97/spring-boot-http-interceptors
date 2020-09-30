@@ -1,15 +1,20 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class User {
 	private String identifier;
 
 	@NotEmpty
+	@Size(min = 4, max = 10)
 	private String username;
 	@NotEmpty
+	@Size(min = 8, message = "Debe tener 8 carácteres como mínimo")
 	private String password;
 	@NotEmpty
+	@Email
 	private String email;
 
 	public User() {
