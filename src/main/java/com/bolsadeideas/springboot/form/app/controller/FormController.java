@@ -40,13 +40,15 @@ public class FormController {
 		// Binding result siempre tiene que ir despues del objeto pojo
 		model.addAttribute("title", "Resultado Form");
 		if (bindingResult.hasErrors()) {
-			Map<String, String> errores = new HashMap<>();
-			bindingResult.getFieldErrors().stream().forEach(err -> {
-				errores.put(err.getField(),
-						"El campo ".concat(err.getField().concat(" ").concat(err.getDefaultMessage())));
-			});
-			model.addAttribute("error", errores);
-
+			/*
+			 * Map<String, String> errores = new HashMap<>();
+			 * bindingResult.getFieldErrors().stream().forEach(err -> {
+			 * errores.put(err.getField(),
+			 * "El campo ".concat(err.getField().concat(" ").concat(err.getDefaultMessage())
+			 * )); }); model.addAttribute("error", errores);
+			 */
+			// El manejo de errores los podemos trabajar de forma automatica e implicita por
+			// thymeleaf y Spring famework
 			return "form";
 		}
 		model.addAttribute("user", user);

@@ -6,34 +6,33 @@
 </head>
 <body>
 	<h3 th:text="${title}"></h3>
-	<form th:action="@{/form}" method="post">
+	<!-- Este formulario y cada uno de sus campos estan mapeados al objeto User 
+	th:field="*" agrega de forma automaticalos atribyutos value y name-->
+	<form th:action="@{/form}" method="post" th:object="${user}">
 		<div>
 			<label for="username">Username</label>
 		</div>
 		<div>
-			<input type="text" name="username" id="username"
-				th:value="${user.username}">
+			<input type="text" id="username" th:field="*{username}">
 		</div>
-		<div th:if="${error != null && error.containsKey('username')}"
-			th:text="${error.username}"></div>
+		<!-- # para utilizar un objeto helper o de utilidad de Thymeleaf de esta forma recortamos mucho código  -->
+		<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 		<div>
 			<label for="password">Password</label>
 		</div>
 		<div>
-			<input type="password" name="password" id="password">
+			<input type="password" id="password" th:field="*{password}">
 		</div>
-		<div th:if="${error != null && error.containsKey('password')}"
-			th:text="${error.password}"></div>
+		<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 		<div>
 			<label for="email">Email</label>
 		</div>
 		<div>
-			<input type="text" name="email" id="email" th:value="${user.email}">
+			<input type="text" id="email" th:field="*{email}">
 		</div>
-		<div th:if="${error != null && error.containsKey('email')}"
-			th:text="${error.email}"></div>
+		<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 		<div>
-			<input type="submit" value="Emviar">
+			<input type="submit" value="Submit">
 		</div>
 	</form>
 
