@@ -3,6 +3,8 @@ package com.bolsadeideas.springboot.form.app.models.entity;
 import javax.validation.constraints.NotEmpty;
 
 public class User {
+	private String identifier;
+
 	@NotEmpty
 	private String username;
 	@NotEmpty
@@ -19,6 +21,14 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+	}
+
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 	public String getUsername() {
