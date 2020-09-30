@@ -1,8 +1,5 @@
 package com.bolsadeideas.springboot.form.app.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.models.entity.User;
 
@@ -20,38 +19,34 @@ import com.bolsadeideas.springboot.form.app.models.entity.User;
  * 
  */
 @Controller
+//se guarda los datos del objeto user en una session HTTP 
+@SessionAttributes("user")
 public class FormController {
 	@GetMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("title", "Form Usuario");
-		// para evitar el error de que el objeto user sea null, cuando mostramos
-		// agregamos una instancia de dicho objeto
-		model.addAttribute("user", new User());
+		User user = new User();
+		// dato normalmente obtenido de una base de datos
+		user.setIdentifier("123.456.789-k");
+		model.addAttribute("user", user);
 		return "form";
 	}
 
-	/*
-	 * 1.- con @RequestParam T ImputName 2.- @RequestParam(name="ImputName") T
-	 * ImputName
-	 */
 	@PostMapping("/form")
-	public String procesar(@Valid User user, BindingResult bindingResult, Model model) {
-		// antes de manejar,guardar,usar el objeto User tenemos si es valido o no
-		// Binding result siempre tiene que ir despues del objeto pojo
+	public String procesar(@Valid User user, BindingResult bindingResult, Model model, SessionStatus status) {
 		model.addAttribute("title", "Resultado Form");
 		if (bindingResult.hasErrors()) {
-			/*
-			 * Map<String, String> errores = new HashMap<>();
-			 * bindingResult.getFieldErrors().stream().forEach(err -> {
-			 * errores.put(err.getField(),
-			 * "El campo ".concat(err.getField().concat(" ").concat(err.getDefaultMessage())
-			 * )); }); model.addAttribute("error", errores);
-			 */
+
 			// El manejo de errores los podemos trabajar de forma automatica e implicita por
 			// thymeleaf y Spring famework
 			return "form";
 		}
 		model.addAttribute("user", user);
+		/**
+		 * completa el proceso manejo de datos y elimina los atributos u objetos
+		 * almacenados en la sesion
+		 */
+		status.setComplete();
 		return "resultform";
 	}
 }
