@@ -2,9 +2,11 @@ package com.bolsadeideas.springboot.form.app.models.entity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
+	@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")
 	private String identifier;
 
 	@NotEmpty
