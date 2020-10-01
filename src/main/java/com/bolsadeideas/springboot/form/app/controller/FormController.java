@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.form.app.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.models.entity.User;
+import com.bolsadeideas.springboot.form.app.validation.UserValidator;
 
 /**
  * Vamos a necesitar 2 metodos handler un GET para mostrar el formulario
@@ -22,6 +24,10 @@ import com.bolsadeideas.springboot.form.app.models.entity.User;
 //se guarda los datos del objeto user en una session HTTP 
 @SessionAttributes("user")
 public class FormController {
+	// vamos a inyectar la clase validator en concreto
+	@Autowired
+	private UserValidator validator;
+
 	@GetMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("title", "Form Usuario");
@@ -34,6 +40,8 @@ public class FormController {
 
 	@PostMapping("/form")
 	public String procesar(@Valid User user, BindingResult bindingResult, Model model, SessionStatus status) {
+		// asi validamos de forma explicita
+		validator.validate(user, bindingResult);
 		model.addAttribute("title", "Resultado Form");
 		if (bindingResult.hasErrors()) {
 

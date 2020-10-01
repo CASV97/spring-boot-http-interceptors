@@ -2,15 +2,15 @@ package com.bolsadeideas.springboot.form.app.models.entity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
-	@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")
+	// ejemplo de clase de validación
+//	1.-@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")
 	private String identifier;
 
-	@NotEmpty
-	@Size(min = 4, max = 10)
+//	@NotEmpty
+//	@Size(min = 4, max = 10)
 	private String username;
 	@NotEmpty
 	@Size(min = 8, message = "Debe tener 8 carácteres como mínimo")
