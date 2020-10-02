@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -28,6 +30,20 @@ public class FormController {
 	@Autowired
 	private UserValidator validator;
 
+	/**
+	 * para que se valide de forma transparente sin tener que escribir lineas de
+	 * código dentro del método para procesar el formulario para eso tenemos que
+	 * implementar y registrar el validador en el InitBinder (es decir, cuando se
+	 * inicializa el proceso de validación y el proceso de pasar los datos al objeto
+	 * User ) valida de forma transparente, nota: esto por debajo se maneja con
+	 * intersectores Intersectors
+	 */
+	@InitBinder // elemento del ciclo de vida del controlador
+	public void initBinder(WebDataBinder binder) {
+
+		binder.addValidators(validator);
+	}
+
 	@GetMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("title", "Form Usuario");
@@ -41,12 +57,9 @@ public class FormController {
 	@PostMapping("/form")
 	public String procesar(@Valid User user, BindingResult bindingResult, Model model, SessionStatus status) {
 		// asi validamos de forma explicita
-		validator.validate(user, bindingResult);
+		// validator.validate(user, bindingResult);
 		model.addAttribute("title", "Resultado Form");
 		if (bindingResult.hasErrors()) {
-
-			// El manejo de errores los podemos trabajar de forma automatica e implicita por
-			// thymeleaf y Spring famework
 			return "form";
 		}
 		model.addAttribute("user", user);

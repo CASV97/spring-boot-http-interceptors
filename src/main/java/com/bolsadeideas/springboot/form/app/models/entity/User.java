@@ -1,7 +1,7 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class User {
@@ -9,13 +9,13 @@ public class User {
 //	1.-@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")
 	private String identifier;
 
-//	@NotEmpty
-//	@Size(min = 4, max = 10)
+	@NotBlank
+	@Size(min = 4, max = 10)
 	private String username;
-	@NotEmpty
+	@NotBlank
 	@Size(min = 8, message = "Debe tener 8 carácteres como mínimo")
 	private String password;
-	@NotEmpty
+	@NotBlank
 	@Email
 	private String email;
 
