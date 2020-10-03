@@ -5,10 +5,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentifierRegex;
+import com.bolsadeideas.springboot.form.app.validation.Required;
 
 public class User {
 	// ejemplo de clase de validación
 	@IdentifierRegex
+	@Required
 	private String identifier;
 
 	@NotBlank
