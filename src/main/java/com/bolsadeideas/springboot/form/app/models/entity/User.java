@@ -4,9 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.bolsadeideas.springboot.form.app.validation.IdentifierRegex;
+
 public class User {
 	// ejemplo de clase de validación
-//	1.-@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")
+	@IdentifierRegex
 	private String identifier;
 
 	@NotBlank

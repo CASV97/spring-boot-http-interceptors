@@ -26,15 +26,15 @@ public class UserValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		// recibimos el objeto o target que es de tipo usuario por lo tanto debemos
 		// castear y podemos validar sus campos en el, objeto Errors validamos el error
-		User user = (User) target;
+//		User user = (User) target;
 		// 2.-podemos utilizar la clase helper ValidationUtils de Spring **El errorCode
 		// puede ser uno guardado en el messages.properties
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "identifier", "requiret.user");
-		if (!user.getIdentifier().matches("[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")) {
-			// 3.- siempre para rechazar una validacion que no es correcta usamos el objeto
-			// Errors.rejectValue()
-			errors.rejectValue("identifier", "pattern.user.identifier");
-		}
+//		if (!user.getIdentifier().matches("[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")) {
+//			// 3.- siempre para rechazar una validacion que no es correcta usamos el objeto
+//			// Errors.rejectValue()
+//			errors.rejectValue("identifier", "pattern.user.identifier");
+//		}
 	}
 
 }
