@@ -50,9 +50,10 @@
 		<div>
 			<label for="birthdate">birthdate</label>
 		</div>
+		<!-- El imput DAte de HTML envia la fecha con '-' -->
 		<div>
-			<input type="text" id="birthdate" th:field="*{birthdate}"
-				placeholder="yyyy/MM/dd">
+			<input type="date" id="birthdate" th:field="*{birthdate}"
+				placeholder="yyyy-MM-dd" >
 		</div>
 		<div th:if="${#fields.hasErrors('birthdate')}"
 			th:errors="*{birthdate}"></div>
