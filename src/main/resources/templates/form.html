@@ -9,14 +9,15 @@
 	<!-- Este formulario y cada uno de sus campos estan mapeados al objeto User 
 	th:field="*" agrega de forma automaticalos atribyutos value y name-->
 	<form th:action="@{/form}" method="post" th:object="${user}">
-	<!--Validacion personalizada del identificador usando patterns  -->
+		<!--Validacion personalizada del identificador usando patterns  -->
 		<div>
 			<label for="identifier">Identifier</label>
 		</div>
 		<div>
 			<input type="text" id="identifier" th:field="*{identifier}">
 		</div>
-		<div th:if="${#fields.hasErrors('identifier')}" th:errors="*{identifier}"></div>
+		<div th:if="${#fields.hasErrors('identifier')}"
+			th:errors="*{identifier}"></div>
 		<div>
 			<label for="username">Username</label>
 		</div>
@@ -39,6 +40,13 @@
 			<input type="text" id="email" th:field="*{email}">
 		</div>
 		<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		<div>
+			<label for="account">Account</label>
+		</div>
+		<div>
+			<input type="text" id="account" th:field="*{account}">
+		</div>
+		<div th:if="${#fields.hasErrors('account')}" th:errors="*{account}"></div>
 		<div>
 			<input type="submit" value="Submit">
 		</div>

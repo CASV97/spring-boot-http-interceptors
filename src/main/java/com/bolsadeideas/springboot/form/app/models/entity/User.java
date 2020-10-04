@@ -1,7 +1,9 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentifierRegex;
@@ -12,16 +14,19 @@ public class User {
 	@IdentifierRegex
 	@Required
 	private String identifier;
-
-	@NotBlank
+	@Required
 	@Size(min = 4, max = 10)
 	private String username;
-	@NotBlank
+	@Required
 	@Size(min = 8, message = "Debe tener 8 carácteres como mínimo")
 	private String password;
-	@NotBlank
+	@Required
 	@Email
 	private String email;
+	@NotNull
+	@Min(5)
+	@Max(5000)
+	private Integer account;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -66,4 +71,11 @@ public class User {
 		this.email = email;
 	}
 
+	public Integer getAccount() {
+		return account;
+	}
+
+	public void setAccount(Integer account) {
+		this.account = account;
+	}
 }
