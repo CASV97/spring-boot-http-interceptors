@@ -1,14 +1,20 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
 
+import java.util.Date;
+
+import javax.validation.Validation;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.bolsadeideas.springboot.form.app.validation.IdentifierRegex;
 import com.bolsadeideas.springboot.form.app.validation.Required;
 
+/** Clase User Ejemplo de validaciones con {@link Validation} */
 public class User {
 	// ejemplo de clase de validación
 	@IdentifierRegex
@@ -27,6 +33,9 @@ public class User {
 	@Min(5)
 	@Max(5000)
 	private Integer account;
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private Date birthdate;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -77,5 +86,13 @@ public class User {
 
 	public void setAccount(Integer account) {
 		this.account = account;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 }
