@@ -1,7 +1,9 @@
 package com.bolsadeideas.springboot.form.app.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -58,6 +61,20 @@ public class FormController {
 		// tall como registramos un Custom editor para el validador de las fechas, asi
 		// customizamos nuestros editores o filtros
 		binder.registerCustomEditor(String.class, "username", new UpperCaseUsernameEditor());
+	}
+
+	/**
+	 * para el ejemplo poblamos el Select de html * normalmente vamos a buscar la
+	 * lista mediante una consulta a la base de datos este método lo podemos
+	 * utilizar en todos los métodos handler del controlador
+	 * 
+	 * @param model
+	 * @return lo que retorna este método, se pasa y se guarda en la vista como
+	 *         atributo y lo podemos utilizar en el formulario
+	 */
+	@ModelAttribute("countries")
+	public List<String> countries() {
+		return Arrays.asList("España", "México", "Chile", "Ecuador", "Colombia", "Bolivia", "Francia");
 	}
 
 	@GetMapping("/form")

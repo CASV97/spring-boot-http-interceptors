@@ -6,8 +6,8 @@ import javax.validation.Validation;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
@@ -40,13 +40,13 @@ public class User {
 	private Integer account;
 
 	@NotNull
-//@DateTimeFormat(pattern = "yyyy-MM-dd") 
-	// Formateando fechas con @InitBinder y registrando un CustomDateEditor
 	@PastOrPresent
 	private Date birthdate;
+	
+	@NotEmpty
+	private String country;
 
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(String username, String password, String email) {
@@ -102,5 +102,13 @@ public class User {
 
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }
