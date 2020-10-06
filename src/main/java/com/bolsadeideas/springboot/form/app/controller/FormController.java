@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.bolsadeideas.springboot.form.app.editors.UpperCaseUsernameEditor;
 import com.bolsadeideas.springboot.form.app.models.entity.User;
 import com.bolsadeideas.springboot.form.app.validation.UserValidator;
 
@@ -52,7 +53,11 @@ public class FormController {
 		// Eso es la indulgencia, es decir, define si en analizdor que va a realizar un
 		// análisis un (parse) de la fecha con false se vuelve mas estricto
 		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
+		// tall como registramos un Custom editor para el validador de las fechas, asi
+		// customizamos nuestros editores o filtros
+		binder.registerCustomEditor(String.class, "username", new UpperCaseUsernameEditor());
 	}
 
 	@GetMapping("/form")
