@@ -8,35 +8,41 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentifierRegex;
 import com.bolsadeideas.springboot.form.app.validation.Required;
 
 /** Clase User Ejemplo de validaciones con {@link Validation} */
 public class User {
+
 	// ejemplo de clase de validación
 	@IdentifierRegex
 	@Required
 	private String identifier;
+
 	@Required
 	@Size(min = 4, max = 10)
 	private String username;
+
 	@Required
 	@Size(min = 8, message = "Debe tener 8 carácteres como mínimo")
 	private String password;
+
 	@Required
 	@Email
 	private String email;
+
 	@NotNull
 	@Min(5)
 	@Max(5000)
 	private Integer account;
+
 	@NotNull
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Past
+//@DateTimeFormat(pattern = "yyyy-MM-dd") 
+	// Formateando fechas con @InitBinder y registrando un CustomDateEditor
+	@PastOrPresent
 	private Date birthdate;
 
 	public User() {

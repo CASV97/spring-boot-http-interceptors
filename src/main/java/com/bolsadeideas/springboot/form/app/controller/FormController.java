@@ -1,8 +1,12 @@
 package com.bolsadeideas.springboot.form.app.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +46,13 @@ public class FormController {
 	public void initBinder(WebDataBinder binder) {
 
 		binder.addValidators(validator);
+		// CustomEditor cuztomizar un campo que obtemenos y convertirlo en otro tipo de
+		// dato es como un filtro
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// Eso es la indulgencia, es decir, define si en analizdor que va a realizar un
+		// análisis un (parse) de la fecha con false se vuelve mas estricto
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 
 	@GetMapping("/form")
