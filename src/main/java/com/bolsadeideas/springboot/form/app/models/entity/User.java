@@ -2,11 +2,11 @@ package com.bolsadeideas.springboot.form.app.models.entity;
 
 import java.util.Date;
 
+import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
@@ -42,9 +42,9 @@ public class User {
 	@NotNull
 	@PastOrPresent
 	private Date birthdate;
-
-	@NotEmpty
-	private String country;
+	// con @Valid pedimos que se validen los objetos relacionados
+	@Valid
+	private Country country;
 
 	public User() {
 	}
@@ -104,11 +104,11 @@ public class User {
 		this.birthdate = birthdate;
 	}
 
-	public String getCountry() {
+	public Country getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(Country country) {
 		this.country = country;
 	}
 }

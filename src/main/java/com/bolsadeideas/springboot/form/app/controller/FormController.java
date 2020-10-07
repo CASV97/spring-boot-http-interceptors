@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.form.app.editors.UpperCaseUsernameEditor;
+import com.bolsadeideas.springboot.form.app.models.entity.Country;
 import com.bolsadeideas.springboot.form.app.models.entity.User;
 import com.bolsadeideas.springboot.form.app.validation.UserValidator;
 
@@ -74,6 +75,13 @@ public class FormController {
 	 * @return lo que retorna este método, se pasa y se guarda en la vista como
 	 *         atributo y lo podemos utilizar en el formulario
 	 */
+	@ModelAttribute("countriesList")
+	public List<Country> countriesList() {
+		return Arrays.asList(new Country(1, "ES", "España"), new Country(2, "MX", "México"),
+				new Country(3, "CL", "Chile"), new Country(4, "EC", "Ecuador"), new Country(5, "CO", "Colombia"),
+				new Country(5, "BO", "Bolivia"), new Country(6, "FR", "Francia"));
+	}
+
 	@ModelAttribute("countries")
 	public List<String> countries() {
 		return Arrays.asList("España", "México", "Chile", "Ecuador", "Colombia", "Bolivia", "Francia");

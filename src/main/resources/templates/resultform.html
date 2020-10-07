@@ -12,8 +12,9 @@
 		<li th:text="${user.email}"></li>
 		<li th:text="${user.identifier}"></li>
 		<li th:text="${user.account}"></li>
-		<li th:text="${user.country}"></li>
-		<!--Con thymeleaf podemos cambiar el formato por defecto seguin nuesta localizacion utilizando los objetos Helper de thymeleaf  #dates.format(user.birthdate, 'dd/MM/yyyy') 
+		<li th:text="${user.country.id}"></li>
+		<!--Con thymeleaf podemos cambiar el formato por defecto seguin nuesta localizacion utilizando los objetos
+		 Helper de thymeleaf  #dates.format(user.birthdate, 'dd/MM/yyyy') 
 		-->
 		<li th:text="${#dates.format(user.birthdate, 'dd/MM/yyyy')}"></li>
 	</ul>
