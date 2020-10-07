@@ -10,17 +10,17 @@
 	th:field="*" agrega de forma automaticalos atribyutos value y name-->
 	<form th:action="@{/form}" method="post" th:object="${user}">
 		<div>
-			<label for="country.id">Country</label>
+			<label for="country">Country</label>
 		</div>
 		<div>
-			<select id="country" th:field="*{country.code}">
+			<select id="country" th:field="*{country}">
 				<option value="">--Select Country--</option>
 				<option th:each="country: ${countriesList}"
-					th:text="${country.name}" th:value="${country.code}"></option>
+					th:text="${country.name}" th:value="${country.id}"></option>
 			</select>
 		</div>
-		<div th:if="${#fields.hasErrors('country.code')}"
-			th:errors="*{country.code}"></div>
+		<div th:if="${#fields.hasErrors('country')}"
+			th:errors="*{country}"></div>
 		<!--Validacion personalizada del identificador usando patterns  -->
 		<div>
 			<label for="identifier">Identifier</label>

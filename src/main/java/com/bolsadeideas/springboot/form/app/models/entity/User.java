@@ -43,7 +43,8 @@ public class User {
 	@PastOrPresent
 	private Date birthdate;
 	// con @Valid pedimos que se validen los objetos relacionados
-	@Valid
+
+	@NotNull
 	private Country country;
 
 	public User() {

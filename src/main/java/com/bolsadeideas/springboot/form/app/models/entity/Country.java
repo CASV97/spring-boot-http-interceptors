@@ -1,11 +1,8 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
 
-import javax.validation.constraints.NotEmpty;
-
 public class Country {
 //	@NotNull
 	private Integer id;
-	@NotEmpty
 	private String code;
 	private String name;
 
