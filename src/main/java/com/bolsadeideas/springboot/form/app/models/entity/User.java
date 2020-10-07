@@ -42,7 +42,7 @@ public class User {
 	@NotNull
 	@PastOrPresent
 	private Date birthdate;
-	
+
 	@NotEmpty
 	private String country;
 
