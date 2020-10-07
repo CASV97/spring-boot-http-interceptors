@@ -25,6 +25,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.bolsadeideas.springboot.form.app.editors.UpperCaseUsernameEditor;
 import com.bolsadeideas.springboot.form.app.models.entity.Country;
 import com.bolsadeideas.springboot.form.app.models.entity.User;
+import com.bolsadeideas.springboot.form.app.services.CountryService;
 import com.bolsadeideas.springboot.form.app.validation.UserValidator;
 
 /**
@@ -40,6 +41,9 @@ public class FormController {
 	// vamos a inyectar la clase validator en concreto
 	@Autowired
 	private UserValidator validator;
+
+	@Autowired
+	private CountryService countryService;
 
 	/**
 	 * para que se valide de forma transparente sin tener que escribir lineas de
@@ -77,9 +81,7 @@ public class FormController {
 	 */
 	@ModelAttribute("countriesList")
 	public List<Country> countriesList() {
-		return Arrays.asList(new Country(1, "ES", "España"), new Country(2, "MX", "México"),
-				new Country(3, "CL", "Chile"), new Country(4, "EC", "Ecuador"), new Country(5, "CO", "Colombia"),
-				new Country(5, "BO", "Bolivia"), new Country(6, "FR", "Francia"));
+		return countryService.list();
 	}
 
 	@ModelAttribute("countries")
