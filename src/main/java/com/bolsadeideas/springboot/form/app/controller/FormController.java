@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -74,7 +75,7 @@ public class FormController {
 		binder.registerCustomEditor(String.class, "username", new UpperCaseUsernameEditor());
 
 		// registrando editor del country en el formulario
-		binder.registerCustomEditor(Country.class, countryEditor); 
+		binder.registerCustomEditor(Country.class, countryEditor);
 	}
 
 	/**
@@ -108,6 +109,17 @@ public class FormController {
 		countries.put("BO", "Bolivia");
 		countries.put("FR", "Francia");
 		return countries;
+	}
+
+	//
+	@ModelAttribute("rolesStringList")
+	public List<String> rolesStringList() {
+		List<String> roles = new ArrayList<String>();
+		// ejemplo de nomenclatura de roles de Spring Security
+		roles.add("ROLE_ADMIN");
+		roles.add("ROLE_USER");
+		roles.add("ROLE_MODERATOR");
+		return roles;
 	}
 
 	@GetMapping("/form")

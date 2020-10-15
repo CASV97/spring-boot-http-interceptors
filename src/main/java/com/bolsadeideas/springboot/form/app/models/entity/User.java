@@ -1,12 +1,13 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
@@ -23,7 +24,7 @@ public class User {
 	private String identifier;
 
 	@Required
-	@Size(min = 4, max = 10)
+	@Size(min = 4)
 	private String username;
 
 	@Required
@@ -46,6 +47,9 @@ public class User {
 
 	@NotNull
 	private Country country;
+
+	@NotEmpty
+	private List<String> roles;
 
 	public User() {
 	}
@@ -111,5 +115,13 @@ public class User {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }

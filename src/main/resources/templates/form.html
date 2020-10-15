@@ -19,12 +19,21 @@
 					th:text="${country.name}" th:value="${country.id}"></option>
 			</select>
 		</div>
-		<div th:if="${#fields.hasErrors('country')}"
-			th:errors="*{country}"></div>
-		<!--Validacion personalizada del identificador usando patterns  -->
+		<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+		<!-- Implementando CheckBoxes de una lista -->
+		<div>
+			<label for="roles">Roles</label>
+		</div>
+		<div th:each="role : ${rolesStringList}">
+			<input type="checkbox" th:field="*{roles}" th:value="${role}">
+			<label th:for="${#ids.prev('roles')}" th:text="${role}">Roles</label>
+
+		</div>
+		<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
 		<div>
 			<label for="identifier">Identifier</label>
 		</div>
+		<!--Validacion personalizada del identificador usando patterns  -->
 		<div>
 			<input type="text" id="identifier" th:field="*{identifier}">
 		</div>

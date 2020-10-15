@@ -20,6 +20,10 @@
 		<li th:text="${#dates.format(user.birthdate, 'dd/MM/yyyy')}"></li>
 	</ul>
 
+	<div>Roles</div>
+	<ul>
+		<li th:each="role : ${user.roles}" th:text="${role}"></li>
+	</ul>
 
 </body>
 </html>

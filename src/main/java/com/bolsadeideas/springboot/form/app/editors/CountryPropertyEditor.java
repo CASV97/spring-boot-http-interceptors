@@ -14,15 +14,11 @@ public class CountryPropertyEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String idString) throws IllegalArgumentException {
-		if (idString != null && idString.length() > 0) {
-			try {
-				Integer id = Integer.parseInt(idString);
-				this.setValue(countryService.getCountryById(id));
+		try {
+			Integer id = Integer.parseInt(idString);
+			this.setValue(countryService.getCountryById(id));
 
-			} catch (NumberFormatException e) {
-				setValue(null);
-			}
-		} else {
+		} catch (NumberFormatException e) {
 			setValue(null);
 		}
 	}
