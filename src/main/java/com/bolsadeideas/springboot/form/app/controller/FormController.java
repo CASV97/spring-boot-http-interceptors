@@ -111,7 +111,7 @@ public class FormController {
 		return countries;
 	}
 
-	//
+	//agregando lista de roles a la vista
 	@ModelAttribute("rolesStringList")
 	public List<String> rolesStringList() {
 		List<String> roles = new ArrayList<String>();
@@ -119,6 +119,15 @@ public class FormController {
 		roles.add("ROLE_ADMIN");
 		roles.add("ROLE_USER");
 		roles.add("ROLE_MODERATOR");
+		return roles;
+	}
+	//agregando map de roles a la vista
+	@ModelAttribute("rolesMap")
+	public Map<String, String> rolesMap() {
+		Map<String, String> roles = new HashMap<String, String>();
+		roles.put("ROLE_ADMIN", "Admin");
+		roles.put("ROLE_USER", "User");
+		roles.put("ROLE_MODERATOR", "Moderator");
 		return roles;
 	}
 

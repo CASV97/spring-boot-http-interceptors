@@ -20,13 +20,13 @@
 			</select>
 		</div>
 		<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
-		<!-- Implementando CheckBoxes de una lista -->
+		<!-- Implementando CheckBoxes de Map -->
 		<div>
 			<label for="roles">Roles</label>
 		</div>
-		<div th:each="role : ${rolesStringList}">
-			<input type="checkbox" th:field="*{roles}" th:value="${role}">
-			<label th:for="${#ids.prev('roles')}" th:text="${role}">Roles</label>
+		<div th:each="role : ${rolesMap.entrySet()}">
+			<input type="checkbox" th:field="*{roles}" th:value="${role.key}">
+			<label th:for="${#ids.prev('roles')}" th:text="${role.value}">Roles</label>
 
 		</div>
 		<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
