@@ -24,9 +24,10 @@
 		<div>
 			<label for="roles">Roles</label>
 		</div>
-		<div th:each="role : ${rolesMap.entrySet()}">
-			<input type="checkbox" th:field="*{roles}" th:value="${role.key}">
-			<label th:for="${#ids.prev('roles')}" th:text="${role.value}">Roles</label>
+		<div th:each="role : ${rolesList}">
+			<input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+			<!-- th:for="${#ids.prev('roles')}" thyleaf function that make use of Helper objects, serves to mark the checkbox if the label is selected  -->
+			<label th:for="${#ids.prev('roles')}" th:text="${role.roleName}">Roles</label>
 
 		</div>
 		<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>

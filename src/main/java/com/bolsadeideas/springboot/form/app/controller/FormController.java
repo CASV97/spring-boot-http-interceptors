@@ -26,8 +26,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.bolsadeideas.springboot.form.app.editors.CountryPropertyEditor;
 import com.bolsadeideas.springboot.form.app.editors.UpperCaseUsernameEditor;
 import com.bolsadeideas.springboot.form.app.models.entity.Country;
+import com.bolsadeideas.springboot.form.app.models.entity.Role;
 import com.bolsadeideas.springboot.form.app.models.entity.User;
 import com.bolsadeideas.springboot.form.app.services.CountryService;
+import com.bolsadeideas.springboot.form.app.services.RoleService;
 import com.bolsadeideas.springboot.form.app.validation.UserValidator;
 
 /**
@@ -40,6 +42,9 @@ import com.bolsadeideas.springboot.form.app.validation.UserValidator;
 //se guarda los datos del objeto user en una session HTTP 
 @SessionAttributes("user")
 public class FormController {
+	@Autowired
+	private RoleService roleServices;
+
 	// vamos a inyectar la clase validator en concreto
 	@Autowired
 	private UserValidator validator;
@@ -78,6 +83,11 @@ public class FormController {
 		binder.registerCustomEditor(Country.class, countryEditor);
 	}
 
+	@ModelAttribute("rolesList")
+	public List<Role> rolesList() {
+		return roleServices.getRoles();
+	}
+
 	/**
 	 * para el ejemplo poblamos el Select de html * normalmente vamos a buscar la
 	 * lista mediante una consulta a la base de datos este método lo podemos
@@ -111,7 +121,7 @@ public class FormController {
 		return countries;
 	}
 
-	//agregando lista de roles a la vista
+	// agregando lista de roles a la vista
 	@ModelAttribute("rolesStringList")
 	public List<String> rolesStringList() {
 		List<String> roles = new ArrayList<String>();
@@ -121,7 +131,8 @@ public class FormController {
 		roles.add("ROLE_MODERATOR");
 		return roles;
 	}
-	//agregando map de roles a la vista
+
+	// agregando map de roles a la vista
 	@ModelAttribute("rolesMap")
 	public Map<String, String> rolesMap() {
 		Map<String, String> roles = new HashMap<String, String>();
