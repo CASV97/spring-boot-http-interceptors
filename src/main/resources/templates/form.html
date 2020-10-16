@@ -10,6 +10,12 @@
 	th:field="*" agrega de forma automaticalos atribyutos value y name-->
 	<form th:action="@{/form}" method="post" th:object="${user}">
 		<div>
+			<label for="enable">Enable</label>
+			<div>
+				<input type="checkbox" id="enable" th:field="*{enable}">
+			</div>
+		</div>
+		<div>
 			<label for="country">Country</label>
 		</div>
 		<div>

@@ -51,6 +51,8 @@ public class User {
 	@NotEmpty
 	private List<Role> roles;
 
+	private Boolean enable;
+
 	public User() {
 	}
 
@@ -123,5 +125,13 @@ public class User {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 }

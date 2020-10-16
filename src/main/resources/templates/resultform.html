@@ -18,6 +18,7 @@
 		 Helper de thymeleaf  #dates.format(user.birthdate, 'dd/MM/yyyy') 
 		-->
 		<li th:text="${#dates.format(user.birthdate, 'dd/MM/yyyy')}"></li>
+		<li th:text="'Enable: '+${user.enable}"></li>
 	</ul>
 
 	<div>Roles</div>

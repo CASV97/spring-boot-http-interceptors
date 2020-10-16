@@ -103,6 +103,7 @@ public class FormController {
 		User user = new User();
 		// dato normalmente obtenido de una base de datos
 		user.setIdentifier("23.456.789-K");
+		user.setEnable(true);
 		model.addAttribute("user", user);
 		return "form";
 	}
