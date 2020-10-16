@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -95,6 +96,12 @@ public class FormController {
 	@ModelAttribute("countriesList")
 	public List<Country> countriesList() {
 		return countryService.list();
+	}
+
+	@ModelAttribute("genders")
+	public List<String> genders() {
+		return Arrays.asList("Male", "Female");
+
 	}
 
 	@GetMapping("/form")
