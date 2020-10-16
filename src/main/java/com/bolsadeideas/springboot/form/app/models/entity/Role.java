@@ -1,9 +1,10 @@
 package com.bolsadeideas.springboot.form.app.models.entity;
+
 // Llenando checkboxes con objetos del tipo Role
 public class Role {
-	private Integer id;//llave
-	private String roleName;//nombre visible que se muestra
-	private String role;//en nombre role para Spring Security
+	private Integer id;// llave
+	private String roleName;// nombre visible que se muestra
+	private String role;// en nombre role para Spring Security
 
 	public Role() {
 	}

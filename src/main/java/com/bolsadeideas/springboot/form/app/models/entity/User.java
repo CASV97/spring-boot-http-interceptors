@@ -24,11 +24,11 @@ public class User {
 	private String identifier;
 
 	@Required
-	@Size(min = 4)
+	@Size(min = 4, max = 8)
 	private String username;
 
 	@Required
-	@Size(min = 8, message = "Debe tener 8 carácteres como mínimo")
+	@Size(min = 4)
 	private String password;
 
 	@Required

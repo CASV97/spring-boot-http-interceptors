@@ -22,7 +22,7 @@
 		<div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
 		<!-- Implementando CheckBoxes de Map -->
 		<div>
-			<label for="roles">Roles</label>
+			<label>Roles</label>
 		</div>
 		<div th:each="role : ${rolesList}">
 			<input type="checkbox" th:field="*{roles}" th:value="${role.id}">
