@@ -39,4 +39,11 @@ public class Country {
 		this.name = name;
 	}
 
+	/***/
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.id.toString();
+	}
+
 }

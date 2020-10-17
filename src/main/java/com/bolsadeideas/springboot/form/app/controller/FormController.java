@@ -112,6 +112,19 @@ public class FormController {
 		user.setIdentifier("23.456.789-K");
 		user.setEnable(true);
 		user.setSecretValue("valorUltrasecreto1684asd351d↕ýTD╣▀");
+		/*
+		 * para dejar seleccionado un país por defecto es importante que el metodo
+		 * toString del objeto Country de vuelva su id
+		 */
+		user.setCountry(new Country(1, "ES", "España"));
+		/*
+		 * En la vista para poblar el select con el valor por defecto es necesario hacer
+		 * uso del atributo de thymelaf th:checked="${#list.contains(user.roles,role)}"
+		 * #list.contains(List , item ) esta utilidad compara si el objeto role que
+		 * estamos marcando por defecto existe dentro de la lista de roles, pero para
+		 * ello tenemos que implementar el método equals() en la clase Role
+		 */
+		user.setRoles(Arrays.asList(new Role(2, "User", "ROLE_USER")));
 
 		model.addAttribute("user", user);
 		return "form";
@@ -119,14 +132,12 @@ public class FormController {
 
 	@PostMapping("/form")
 	public String procesar(@Valid User user, BindingResult bindingResult, Model model, SessionStatus status) {
-		// asi validamos de forma explicita
-		// validator.validate(user, bindingResult);
 		model.addAttribute("title", "Resultado Form");
 		if (bindingResult.hasErrors()) {
 			return "form";
 		}
 		model.addAttribute("user", user);
-		/**
+		/*
 		 * completa el proceso manejo de datos y elimina los atributos u objetos
 		 * almacenados en la sesion
 		 */

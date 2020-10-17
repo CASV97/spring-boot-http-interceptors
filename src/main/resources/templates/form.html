@@ -39,7 +39,8 @@
 			<label>Roles</label>
 		</div>
 		<div th:each="role : ${rolesList}">
-			<input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+			<input type="checkbox" th:field="*{roles}" th:value="${role.id}"
+				th:checked="${#lists.contains(user.roles , role)}">
 			<!-- th:for="${#ids.prev('roles')}" thyleaf function that make use of Helper objects, serves to mark the checkbox if the label is selected  -->
 			<label th:for="${#ids.prev('roles')}" th:text="${role.roleName}">Roles</label>
 
