@@ -96,6 +96,12 @@
 		<div>
 			<input type="submit" value="Submit">
 		</div>
+		<!-- input del tipo hidden, el valor se esconde o no se muestra en el formulario,
+		 nos sirve en el caso de que no queramos que de modifique y tampoco no queremos mostrar este valor   
+		 y este valor después se traspasa al controlador y se guarda tal y como estaba antes, nos es muy util
+		  con thymeleaf y spring security actua igual que un Session Attribute pasar datos al formulario pero 
+		   que no se muestren puesto que esta de forma escondida -->
+		<input type="hidden" th:field="*{secretValue}">
 	</form>
 
 </body>

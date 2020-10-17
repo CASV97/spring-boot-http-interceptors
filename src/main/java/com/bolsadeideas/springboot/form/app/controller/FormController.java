@@ -107,10 +107,12 @@ public class FormController {
 	@GetMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("title", "Form Usuario");
+
 		User user = new User();
-		// dato normalmente obtenido de una base de datos
 		user.setIdentifier("23.456.789-K");
 		user.setEnable(true);
+		user.setSecretValue("valorUltrasecreto1684asd351d↕ýTD╣▀");
+
 		model.addAttribute("user", user);
 		return "form";
 	}
