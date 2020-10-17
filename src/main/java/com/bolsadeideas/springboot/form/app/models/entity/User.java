@@ -28,7 +28,7 @@ public class User {
 	private String username;
 
 	@Required
-	@Size(min = 4)
+	@Size(min = 4,max = 16)
 	private String password;
 
 	@Required

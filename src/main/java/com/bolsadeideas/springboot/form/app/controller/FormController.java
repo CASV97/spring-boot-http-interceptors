@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -110,6 +111,8 @@ public class FormController {
 
 		User user = new User();
 		user.setIdentifier("23.456.789-K");
+		user.setAccount(123);
+		user.setUsername("arielo31");
 		user.setEnable(true);
 		user.setSecretValue("valorUltrasecreto1684asd351d↕ýTD╣▀");
 		/*
@@ -130,18 +133,32 @@ public class FormController {
 		return "form";
 	}
 
+	/**
+	 * Una cosa que se tiene que evitar es la duplicidad de los datos cuando se
+	 * maneja el post cuando obtenemos los datos del formulario para procesar, ya
+	 * sea para insertar en una tabla en base de datos o para enviar correo, siempre
+	 * hay que evitar cargar la vista, tenemos que hacer un redirect asi cuando
+	 * redirigimos la peticion, no se vuelve a enviar el formulario, ya que es otra
+	 * peticion
+	 */
 	@PostMapping("/form")
-	public String procesar(@Valid User user, BindingResult bindingResult, Model model, SessionStatus status) {
-		model.addAttribute("title", "Resultado Form");
+	public String procesar(@Valid User user, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("title", "Resultado Form");
 			return "form";
 		}
-		model.addAttribute("user", user);
-		/*
-		 * completa el proceso manejo de datos y elimina los atributos u objetos
-		 * almacenados en la sesion
-		 */
-		status.setComplete();
+
+		return "redirect:/show";
+	}
+
+	@GetMapping("/show")
+	public String ver(@SessionAttribute(name = "user", required = false) User user, Model model, SessionStatus status) {
+		if (user == null) {
+			return "redirect:/form";
+		}
+		model.addAttribute("title", "Resultado Form");
+
+		//status.setComplete();
 		return "resultform";
 	}
 }
