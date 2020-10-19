@@ -37,7 +37,7 @@ public class ElapsedTimeInterceptor implements HandlerInterceptor {
 		logger.info("Intercepting: " + handler);
 
 		request.setAttribute("startTime", System.currentTimeMillis());
-		// emulando un demora entre 0 y 499 ms
+		// emulando un demora entre 0 y 100 ms
 		Random random = new Random();
 		Integer delay = random.nextInt(100);
 		Thread.sleep(delay);
@@ -48,6 +48,11 @@ public class ElapsedTimeInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		// para aplicar el interceptor en el caso de existir 2 metodos con la misma ruta
+		if (request.getMethod().equalsIgnoreCase("post")) {
+			// salid del metodo o devolver el void
+			return;
+		}
 		long startTime = (Long) request.getAttribute("startTime");
 		long endTime = System.currentTimeMillis();
 		long elapsedTime = endTime - startTime;
