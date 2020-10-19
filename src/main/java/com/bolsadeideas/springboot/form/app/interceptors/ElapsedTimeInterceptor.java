@@ -8,17 +8,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-@Component
-public class RunningTimeInterseptor implements HandlerInterceptor {
-	private static final Logger logger = LoggerFactory.getLogger(RunningTimeInterseptor.class);
+@Component("elapsedTimeInterceptor")
+public class ElapsedTimeInterceptor implements HandlerInterceptor {
+	private static final Logger logger = LoggerFactory.getLogger(ElapsedTimeInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info("RunningTimeInterseptor: preHandle entrando...");
+		if (handler instanceof HandlerMethod) {
+			HandlerMethod method = (HandlerMethod) handler;
+			logger.info("Es un método del controlador: " + method.getMethod().getName());
+
+		}
+		logger.info("RunningTimeInterseptor: preHandle() entrando...");
+		logger.info("Intercepting: " + handler);
 
 		request.setAttribute("startTime", System.currentTimeMillis());
 		// emulando un demora entre 0 y 499 ms
@@ -40,7 +47,7 @@ public class RunningTimeInterseptor implements HandlerInterceptor {
 
 		}
 		logger.info("RunningTimeInterseptor: " + elapsedTime + "ms");
-		logger.info("Time taken: postHandle saliendo...");
+		logger.info("Time taken: postHandle() saliendo...");
 
 	}
 

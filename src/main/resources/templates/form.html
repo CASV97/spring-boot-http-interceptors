@@ -6,6 +6,9 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+	<div class="alert alert-success">
+		<span th:text="'Elapsed time:' + ${elapsedTime} + 'ms'"></span>
+	</div>
 	<h3 th:text="${title}"></h3>
 	<!-- Este formulario y cada uno de sus campos estan mapeados al objeto User 
 	th:field="*" agrega de forma automaticalos atribyutos value y name-->
