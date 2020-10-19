@@ -12,6 +12,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Este interceptor se aplica a todas las rutas, para modificar que rutas puede
+ * interceptar se debe configurar desde la clase de configuracion en donde se
+ * agrega el interceptor a Spring
+ */
 @Component("elapsedTimeInterceptor")
 public class ElapsedTimeInterceptor implements HandlerInterceptor {
 	private static final Logger logger = LoggerFactory.getLogger(ElapsedTimeInterceptor.class);
@@ -19,6 +24,10 @@ public class ElapsedTimeInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		// para aplicar el interceptor en el caso de existir 2 metodos con la misma ruta
+		if (request.getMethod().equalsIgnoreCase("post")) {
+			return true;
+		}
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod method = (HandlerMethod) handler;
 			logger.info("Es un método del controlador: " + method.getMethod().getName());
@@ -30,7 +39,7 @@ public class ElapsedTimeInterceptor implements HandlerInterceptor {
 		request.setAttribute("startTime", System.currentTimeMillis());
 		// emulando un demora entre 0 y 499 ms
 		Random random = new Random();
-		Integer delay = random.nextInt(500);
+		Integer delay = random.nextInt(100);
 		Thread.sleep(delay);
 
 		return true;

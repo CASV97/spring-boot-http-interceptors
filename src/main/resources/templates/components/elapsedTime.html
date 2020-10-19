@@ -1,0 +1,13 @@
+<!-- 1 REutilizar fragmentos de codigo de la vista con thymelaf es la escencia de como crear plantillas reutilizables con thymeleaf -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<!-- section de HTML5 es para indicar una seccion de componentes que podemos reutilizar -->
+	<section th:fragment="interceptor">
+		<div class="alert alert-success" th:if="${elapsedTime != null}">
+			<span th:text="'Elapsed time: ' + ${elapsedTime} + ' ms'"></span>
+		</div>
+	</section>
+</body>
+</html>
