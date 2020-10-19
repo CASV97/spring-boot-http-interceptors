@@ -1,0 +1,10 @@
+Interseptors
+¿Qué hace un interseptor?
+  los interseptors son utiles cuando se requiere aplicar una funcionalidad específica para ciertas peticiones HTTP y es transversal a nuestra aplicación, es decir son fragmentos de código reutilizables que interceptan un método del controlador para agregar funcionalidad o después autenticación, autorización, Logging, transacción, monitoréo(visitas, ips, etc), y se aplican en los métodos de los controladores.
+¿Cómo funciona?
+	Se pueden inplementar de la interfaz de Spring (HandlerInterceptor) o puede extender de la clase abstracta (HandlerInterceptorAdapter), podemos implementar 3 métodos:
+		boolean preHandler(): cuando retorna (true) continúa con la ejecucion del controlador, y si tiene más interceptores asociados continúa con la ejecución en cadena,
+			cuando retorna (false), se asume que el interceptor se hace cargo del (request) por ejemplo:(redirige a una detemiunada vista o ruta) y no continúa ejecutando el
+			controlador ni los demás interceptores
+		void postHandler(): implementar algo después  de que se haya invocado el método handler del controlador
+		void afterCompletion(): implementar algo cuando finalizael proceso, es decir, después de cargar y renderizar la vista.
