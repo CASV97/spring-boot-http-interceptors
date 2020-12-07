@@ -41,7 +41,7 @@ public class ElapsedTimeInterceptor implements HandlerInterceptor {
 		Random random = new Random();
 		Integer delay = random.nextInt(100);
 		Thread.sleep(delay);
-
+		//con false y con response pondemos cambiar nuestra respuiesta o redireccionar la validacion
 		return true;
 	}
 
